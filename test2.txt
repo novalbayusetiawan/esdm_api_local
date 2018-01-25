@@ -1,0 +1,5 @@
+SELECT *
+FROM `perusahaan`
+WHERE `perusahaan`.`kabupaten` like '%kutai kartanegara'
+ORDER BY `nama_perusahaan` ASC
+ LIMIT 10
