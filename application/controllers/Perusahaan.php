@@ -17,6 +17,28 @@ class Perusahaan extends CI_Controller {
         $this->load->model("m_jamtup");
     }
 
+    // public function last_id()
+    // {
+    //     header("Content-type: application/json");
+
+    //     $app_id = $this->input->get("app_id");
+    //     $app_token = $this->input->get("app_token");
+    //     $data = [];
+    //     $valid = $this->m_app_auth->is_valid($app_id, $app_token);
+    //     if ($valid) {
+    //         $id = $this->m_perusahaan->get_last_id();
+    //         # code...
+    //     } else {
+    //         $status = False;
+    //         $message = "Application not Registered";
+    //     }
+
+    //     $output = array(
+    //         "id" => $id
+    //     );
+    //     echo json_encode($output);   
+
+    // }
     public function dt_show()
     {
         header("Content-type: application/json");
@@ -210,6 +232,7 @@ class Perusahaan extends CI_Controller {
             $exist = $this->m_perusahaan->is_exist($id);
             if ( ! $exist ) {
                 $data = array(
+                    "id" => $this->input->post("id"),
                     "nama_perusahaan" => $this->input->post("nama_perusahaan"),
                     "status" => $this->input->post("status"),
                     "nama_dirut" => $this->input->post("nama_dirut"),
@@ -317,7 +340,14 @@ class Perusahaan extends CI_Controller {
                     "no_jamrekpro" => $this->input->post("no_jamrekpro"),
                     "no_jaminankesungguhan" => $this->input->post("no_jaminankesungguhan"),
                     "no_royalti" => $this->input->post("no_royalti"),
-                    "no_iuran" => $this->input->post("no_iuran")
+                    "no_iuran" => $this->input->post("no_iuran"),
+                    "file_tinjau" => $this->input->post("file_tinjau"),
+                    "file_pu" => $this->input->post("file_pu"),
+                    "file_kpeks" => $this->input->post("file_kpeks"),
+                    "file_iupeks" => $this->input->post("file_iupeks"),
+                    "file_kpeksp" => $this->input->post("file_kpeksp"),
+                    "file_iupjual" => $this->input->post("file_iupjual"),
+                    "file_iupop" => $this->input->post("file_iupop")
                 );
                 $exe = $this->m_perusahaan->insert($data);
                 if ( $exe ) {

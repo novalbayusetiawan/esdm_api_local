@@ -8,6 +8,7 @@ class M_Perusahaan extends CI_Model {
     public function get_last_id()
     {
         return $this->last_id;
+        
     }
 
     public function is_exist($id)
