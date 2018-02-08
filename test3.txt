@@ -1,1 +1,1 @@
-{"page":"1","perpage":"10","order_by":"nama_perusahaan+asc","search":"","acc_level":"kutai kartanegara","filter":""}
+{"page":"1","perpage":"10","order_by":"nama_perusahaan+asc","search":"asb","acc_level":"kutai kartanegara","filter":""}

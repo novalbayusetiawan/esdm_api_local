@@ -1,5 +1,6 @@
 SELECT *
 FROM `perusahaan`
 WHERE `perusahaan`.`kabupaten` like '%kutai kartanegara'
+AND `perusahaan`.`nama_perusahaan` like '%asb%'
 ORDER BY `nama_perusahaan` ASC
  LIMIT 10

@@ -1,3 +1,4 @@
 SELECT COUNT(*) AS `numrows`
 FROM `perusahaan`
 WHERE `perusahaan`.`kabupaten` like '%kutai kartanegara'
+AND `perusahaan`.`nama_perusahaan` like '%asb%'

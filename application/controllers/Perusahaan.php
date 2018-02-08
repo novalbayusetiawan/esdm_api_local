@@ -381,6 +381,54 @@ class Perusahaan extends CI_Controller {
         echo json_encode($output);
     }
 
+    public function hapus_file()
+    {
+        # code...
+        header("Content-type: application/json");
+
+        $app_id = $this->input->get("app_id");
+        $app_token = $this->input->get("app_token");
+
+        $id = $this->input->post("id");
+        $type = $this->input->post("type");
+        $data = array();
+        $valid = $this->m_app_auth->is_valid($app_id, $app_token);
+        if($valid){
+            $prev_data = $this->m_perusahaan->get_one($id);
+            $data = array(
+                $type => "",
+            );
+            $exe = $this->m_perusahaan->update($data, $id);
+            if ( $exe ) {
+                $status = True;
+                $message = "Update Perusahaan Success";
+            }
+        
+            $log_activity = array(
+                "app_id" => $app_id,
+                "route" => "perusahaan/hapus_file",
+                "created" => date("Y-m-d H:i:s"),
+                "action" => "u",
+                "activity" => json_encode(array(
+                    "from" => $prev_data,
+                    "to" => $data
+                ))
+            );
+            $this->m_app_logs->insert($log_activity);
+
+        } else {
+            $status = False;
+            $message = "Application not Registered";
+        }
+
+        $output = array(
+            "status" => $status,
+            "message" => $message,
+            "result" => $data
+        );
+        echo json_encode($output);
+
+    }
     public function update()
     {
         header("Content-type: application/json");
@@ -501,7 +549,14 @@ class Perusahaan extends CI_Controller {
                 "no_jamrekpro" => $this->input->post("no_jamrekpro"),
                 "no_jaminankesungguhan" => $this->input->post("no_jaminankesungguhan"),
                 "no_royalti" => $this->input->post("no_royalti"),
-                "no_iuran" => $this->input->post("no_iuran")
+                "no_iuran" => $this->input->post("no_iuran"),
+                "file_tinjau" => $this->input->post("file_tinjau"),
+                "file_pu" => $this->input->post("file_pu"),
+                "file_kpeks" => $this->input->post("file_kpeks"),
+                "file_iupeks" => $this->input->post("file_iupeks"),
+                "file_kpeksp" => $this->input->post("file_kpeksp"),
+                "file_iupjual" => $this->input->post("file_iupjual"),
+                "file_iupop" => $this->input->post("file_iupop")
             );
             $exe = $this->m_perusahaan->update($data, $id);
             if ( $exe ) {
